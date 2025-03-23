@@ -34,12 +34,8 @@ app.post('/generate', async (req, res) => {
         return res.status(400).json({ message: 'Video type is required (Shorts or Long)' });
     }
 
-    if (!platform) {
-        return res.status(400).json({ message: 'Platform is required' });
-    }
-
     try {
-        const result = await genAIService.getGenerateContent(prompt, channelName, targetAudience, videoType, platform);
+        const result = await genAIService.getGenerateContent(prompt, channelName, targetAudience, videoType);
         return res.status(200).json({ result: result.clearJson });
     } catch (error) {
         console.log(error);
